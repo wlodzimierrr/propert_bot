@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 # Set working directory
-WORKDIR /house_alerts
+WORKDIR /property_bot
 
 # Copy requirements first to leverage Docker cache
 COPY requirements.txt .
