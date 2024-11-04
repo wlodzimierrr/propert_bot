@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  property-bot:
+    image: ghcr.io/wlodzimierrr/property_bot:latest
+    container_name: property-bot
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    restart: always
+    environment:
+      - TZ=Europe/London
+    networks:
+      property_bot_network:
+        ipv4_address: 172.24.0.2
+    ports:
+      - "2222:2222"
+
+networks:
+  property_bot_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.24.0.0/16
